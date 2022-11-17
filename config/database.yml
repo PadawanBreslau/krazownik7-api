@@ -1,25 +1,23 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
+# DO NOT CHANGE THIS FILE, EDIT CONFIGURATIONS AT application.yml
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter:  postgresql
+  database: <%= ENV['DATABASE_DATABASE'] %>
+  encoding: unicode
+  host:     <%= ENV['DB_HOST'] || ENV['DATABASE_HOST'] %>
+  password: <%= ENV['DB_POSTGRES_PASSWORD'] || ENV['DATABASE_PASSWORD'] %>
+  pool: <%= ENV['DATABASE_POOL'] %>
+  port: <%= ENV['DB_PORT'] || ENV['DATABASE_PORT'] %>
+  template: template0
+  username: <%= ENV['DB_POSTGRES_USER'] || ENV['DATABASE_USERNAME'] %>
 
 development:
   <<: *default
-  database: db/development.sqlite3
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
-
+  database: <%= ENV['TEST_DATABASE'] %><%= ENV['TEST_ENV_NUMBER'] %>
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter:  postgresql
+  database: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV["DATABASE_URL"] %>
+# DO NOT CHANGE THIS FILE, EDIT CONFIGURATIONS AT application.yml
