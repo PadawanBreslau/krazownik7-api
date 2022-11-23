@@ -17,3 +17,14 @@
 .challenges{
     font-size: x-large;
 }
+
+.points{
+    width: 90%;
+    height: 600px;
+}
+
+.leaflet-container {
+    height: 800px;
+    width: 80vw;
+}
+
